@@ -26,5 +26,4 @@ pandas
 numpy
 googlemaps
 pymongo
-math
 bson
