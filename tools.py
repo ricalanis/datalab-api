@@ -10,8 +10,13 @@ def get_traces(list_places):
     routes = []
     for place in list_places:
         local_steps = "["
+        i = 0
         for route in place["route"]:
-            local_steps.append("["+route["end_location"]["lng"]+","+route["end_location"]["lat"]+"]")
+            if i > 0:
+                initial_string = ","
+            else:
+                initial_string = ""
+            local_steps.append(initial_string + "["+route["end_location"]["lng"]+","+route["end_location"]["lat"]+"]")
         local_steps = local_steps + "]"
         routes.append(local_steps)
     return routes
