@@ -3,7 +3,7 @@ def get_places(list_points):
     try:
         places = []
         for point in list_points:
-            places.append(point["geopoint"]["coordinates"])
+            places.append([point["geopoint"]["coordinates"][1],point["geopoint"]["coordinates"][0]])
     except:
         places = "NaN"
     return places
@@ -19,8 +19,8 @@ def get_traces(longitude, latitude, list_points):
                 if i > 0:
                     initial_string = ","
                 else:
-                    initial_string = "[[" + str(longitude) + "," + str(latitude) +"],"
-                local_steps = local_steps + initial_string + "["+str(route["end_location"]["lng"])+","+str(route["end_location"]["lat"])+"]"
+                    initial_string = "[[" + str(latitude) + "," + str(longitude) +"],"
+                local_steps = local_steps + initial_string + "["+str(route["end_location"]["lat"])+","+str(route["end_location"]["lng"])+"]"
                 i = i + 1
             local_steps = local_steps + "]"
             routes.append(local_steps)
@@ -31,7 +31,7 @@ def get_traces(longitude, latitude, list_points):
 def print_points(longitude,latitude,list_points):
     list_strings = []
     for point in list_points:
-        list_strings.append("[["+ str(longitude) + ","+str(latitude)+"],["+str(point[0])+","+str(point[1])+"]]")
+        list_strings.append("[["+ str(latitude) + ","+str(longitude)+"],["+str(point[1])+","+str(point[0])+"]]")
     return list_strings
 
 def format_response(longitude, latitude, mode, head, list_points):
