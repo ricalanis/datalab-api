@@ -1,7 +1,7 @@
 import datetime
-import os
 import pandas as pd
 import numpy as np
+import os
 import googlemaps
 
 from pymongo import MongoClient
@@ -83,17 +83,16 @@ def directions_row(row, longitude1, latitude1, route_type):
     row["distance"], row["route"] = route_distance_info(row,longitude1, latitude1, route_type)
     return row
 
-
 def find_nearest_top(longitude, latitude, mode, head):
     near_places = get_near_documents(longitude, latitude)
     dataframe_places = pd.DataFrame(near_places)
-    dataframe_distances= dataframe_places.apply(directions_row,  axis=1, args = (longitude, latitude, mode))
+    dataframe_distances = dataframe_places.apply(directions_row,  axis=1, args =(longitude, latitude, mode))
     if mode is not "euclidean":
         dataframe_distances = dataframe_distances.dropna()
     df_distances_top = dataframe_distances.head(head)
     return df_distances_top
 
 def nearest_response(longitude, latitude, mode, head):
-    response_df = find_nearest_top(longitude, latitude, mode, head)
+    response_df = find_nearest_top(longitude, latitude, mode,head)
     response_dict = response_df.to_dict(orient="records")
     return(response_dict)
