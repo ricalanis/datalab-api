@@ -31,7 +31,7 @@ def get_traces(longitude, latitude, list_points):
 def print_points(longitude,latitude,list_points):
     list_strings = []
     for point in list_points:
-        list_strings.append("[["+ str(latitude) + ","+str(longitude)+"],["+str(point[1])+","+str(point[0])+"]]")
+        list_strings.append("[["+ str(latitude) + ","+str(longitude)+"],["+str(point[0])+","+str(point[1])+"]]")
     return list_strings
 
 def format_response(longitude, latitude, mode, head, list_points):
