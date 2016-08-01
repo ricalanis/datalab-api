@@ -15,6 +15,18 @@ import json
 
 app = Flask(__name__, static_url_path='/static')
 
+@app.route('/')
+def home():
+    """Render website's home page."""
+    return render_template('home.html')
+
+
+@app.route('/about/')
+def about():
+    """Render the website's about page."""
+    return render_template('about.html')
+
+
 def add_cors_headers(response):
     response.headers['Access-Control-Allow-Origin'] = '*'
     if request.method == 'OPTIONS':
