@@ -9,9 +9,10 @@ def get_places(list_points):
 def get_traces(list_places):
     routes = []
     for place in list_places:
-        local_steps = []
+        local_steps = "["
         for route in place["route"]:
-            local_steps.append([route["end_location"]["lng"], route["end_location"]["lat"]])
+            local_steps.append("["+route["end_location"]["lng"]+","+route["end_location"]["lat"]+"]")
+        local_steps = local_steps + "]"
         routes.append(local_steps)
     return routes
 
