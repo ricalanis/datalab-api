@@ -7,14 +7,13 @@ def get_places(list_points):
 
 
 def get_traces(list_places):
-    traces = []
+    routes = []
     for place in list_places:
-        local_trace = []
-        for traces in place["legs"]:
-            for step in traces["steps"]:
-                local_trace.append([step["longitude"], step["latitude"]])
-        traces.append(local_trace)
-    return traces
+        local_steps = []
+        for route in place["route"]:
+            local_steps.append([route["end_location"]["lng"], route["end_location"]["lat"]])
+        routes.append(local_steps)
+    return routes
 
 
 def format_response(longitude, latitude, mode, head, list_points):
