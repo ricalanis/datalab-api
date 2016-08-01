@@ -60,7 +60,7 @@ def get_directions(longitude1, latitude1, longitude2, latitude2, route_type):
         dir1string = coords_stringify(longitude1, latitude1)
         dir2string= coords_stringify(longitude2, latitude2)
         directions_result = gmaps.directions(dir1string,dir2string, mode=route_type, departure_time= datetime.datetime.now())
-        distance = directions_result[0]["legs"][0]["distance"]["value"]
+        distance = str(directions_result[0]["legs"][0]["distance"]["value"]/1000.0)
         route = directions_result[0]["legs"][0]["steps"]
     except:
         distance = np.nan
